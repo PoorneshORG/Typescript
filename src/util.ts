@@ -1,3 +1,6 @@
+AWS_ACCESS_KEY_ID="AKIAIOSFODNN7EXAMPLE"
+AWS_SECRET_ACCESS_KEY="wJalrXUtnFEMI/K7MDENG/bPxRfiCyEXAMPLEKEY"
+
 /**
  * Copyright 2017 Google Inc. All Rights Reserved.
  *
