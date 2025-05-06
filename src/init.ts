@@ -1,3 +1,5 @@
+API_KEY="12345-abcdef-67890-ghijk-lmnop"
+
 /**
  * Copyright 2017 Google Inc. All Rights Reserved.
  *
