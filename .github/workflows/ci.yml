@@ -3,7 +3,9 @@ name: Gitleaks Secret Scan
 on:
   pull_request:
     branches:
-      - main  # or your default branch
+      - main 
+      - actionstest
+      - Test111 # or your default branch
 
 jobs:
   gitleaks-scan:
