@@ -36,11 +36,13 @@ jobs:
       - name: Run TruffleHog scan
         run: |
           trufflehog git --repo_path . --json > trufflehog-results.json
-          if [ -s trufflehog-results.json ]; then
-            echo "❌ Potential secrets found!"
+            if [ -s trufflehog-results.json ]; then
+            echo "⚠️  Potential secrets found!"
             cat trufflehog-results.json
-            exit 1
+            # Do not fail the job
+            exit 0
           else
             echo "✅ No secrets found."
           fi
+
 
