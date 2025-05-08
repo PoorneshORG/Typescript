@@ -13,36 +13,14 @@ on:
       - actiontest
 
 jobs:
-  trufflehog-scan:
-    name: Run TruffleHog
+  test:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Debug - Confirm Git Repo
-        run: |
-          git status
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.x'
-
-      - name: Install TruffleHog
-        run: pip install trufflehog
-      
-      - name: Run TruffleHog scan
-        run: |
-          trufflehog git --repo_path . --json > trufflehog-results.json
-            if [ -s trufflehog-results.json ]; then
-            echo "⚠️  Potential secrets found!"
-            cat trufflehog-results.json
-            # Do not fail the job
-            exit 0
-          else
-            echo "✅ No secrets found."
-          fi
-
-
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    - name: Secret Scanning
+      uses: trufflesecurity/trufflehog@main
+      with:
+        extra_args: --results=verified,unknown
