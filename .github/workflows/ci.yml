@@ -11,6 +11,7 @@ on:
       - main
       - trufflehog
       - actiontest
+      - trufflehog111
 
 jobs:
   test:
