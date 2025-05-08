@@ -1,24 +1,27 @@
-name: GitGuardian Secret Scan
+name: CI - Secret Scan
 
 on:
+  push:
+    branches:
+      - main
+      - gitleaks
   pull_request:
     branches:
-      - main  # or change to your default branch
+      - main
+      - gitleaks
 
 jobs:
   secret-scan:
+    name: Checkout and Run Gitleaks
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - name: Install GitGuardian CLI
-        run: |
-          pip install ggshield
-
-      - name: Run secret scan with GitGuardian
-        env:
-          GITGUARDIAN_API_KEY: ${{ secrets.GITGUARDIAN_API_KEY }}
-        run: |
-          ggshield secret scan repo .
+      - name: Run Gitleaks
+        uses: gitleaks/gitleaks-action@v2
+        with:
+          config-path: .github/gitleaks.toml  # optional: use your custom config
+  #      env:
+  #        GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE }} # optional, if needed for private repos
