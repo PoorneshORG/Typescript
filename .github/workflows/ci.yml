@@ -21,6 +21,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Debug - Confirm Git Repo
+        run: |
+          git status
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -28,8 +32,15 @@ jobs:
 
       - name: Install TruffleHog
         run: pip install trufflehog
-
+      
       - name: Run TruffleHog scan
         run: |
           trufflehog git --repo_path . --json > trufflehog-results.json
+          if [ -s trufflehog-results.json ]; then
+            echo "❌ Potential secrets found!"
+            cat trufflehog-results.json
+            exit 1
+          else
+            echo "✅ No secrets found."
+          fi
 
