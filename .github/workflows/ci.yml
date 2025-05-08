@@ -1,24 +1,29 @@
-name: GitGuardian Secret Scan
+name: CI - TruffleHog Secret Scan
 
 on:
+  push:
+    branches:
+      - main
+      - trufflehog
+      - actiontest
   pull_request:
     branches:
-      - main  # or change to your default branch
+      - main
+      - trufflehog
+      - actiontest
 
 jobs:
-  secret-scan:
+  test:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Install GitGuardian CLI
-        run: |
-          pip install ggshield
-
-      - name: Run secret scan with GitGuardian
-        env:
-          GITGUARDIAN_API_KEY: ${{ secrets.GITGUARDIAN_API_KEY }}
-        run: |
-          ggshield secret scan repo .
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        
+    - name: Secret Scanning
+      uses: trufflesecurity/trufflehog@main
+      with:
+          base: ""
+          head: ${{ github.ref_name }}
+          extra_args: --results=verified,unknown
