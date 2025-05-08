@@ -31,4 +31,5 @@ jobs:
 
       - name: Run TruffleHog scan
         run: |
-          trufflehog git file://. --json > trufflehog-results.json
+          trufflehog git --repo_path . --json > trufflehog-results.json
+
