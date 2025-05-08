@@ -21,9 +21,31 @@ jobs:
       with:
         fetch-depth: 0
         
-    - name: Secret Scanning
-      uses: trufflesecurity/trufflehog@main
-      with:
-          base: ""
-          head: ${{ github.ref_name }}
-          extra_args: --results=verified,unknown
+- name: Install TruffleHog
+        run: pip install trufflehog
+
+      - name: Run TruffleHog on full git history
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "🔍 Running TruffleHog on repository history..."
+          trufflehog git https://github.com/${{ github.repository }} \
+            --branch ${{ github.ref_name }} \
+            --json > trufflehog-results.json
+
+      - name: Show and fail on secrets
+        run: |
+          if [ -s trufflehog-results.json ]; then
+            echo "❌ Secrets detected!"
+            cat trufflehog-results.json
+            exit 1
+          else
+            echo "✅ No secrets found."
+          fi
+
+      - name: Upload TruffleHog Results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: trufflehog-results
+          path: trufflehog-results.json
