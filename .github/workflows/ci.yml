@@ -7,13 +7,16 @@
 name: gitleaks-action-HEAD
 on:
   pull_request:
-  - actionstest
-  - main
-  - gitleaks
+    branches:
+      - actionstest
+      - main
+      - gitleaks
+
   push:
-  - actionstest
-  - main
-  - gitleaks
+    branches:
+      - actionstest
+      - main
+      - gitleaks
   workflow_dispatch:
   
 jobs:
