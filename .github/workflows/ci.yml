@@ -30,5 +30,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install ggshield
 
-      - name: Run ggshield secret scan
-        run: ggshield secret scan repo .
+      - name: Run ggshield scan (fail on secrets)
+        run: |
+          ggshield secret scan repo .
