@@ -28,7 +28,8 @@ jobs:
         with:
           fetch-depth: 0
           ref: gitleaks
-      - uses: ./ # Runs the action that's in the root directory of the repo checked out above. i.e. This action itself.
+ - name: Run Gitleaks Scan
+  uses: gitleaks/gitleaks-action@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE}}
