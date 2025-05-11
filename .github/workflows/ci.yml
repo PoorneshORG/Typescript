@@ -24,4 +24,4 @@ jobs:
       - name: Run TruffleHog secret scan
         uses: trufflesecurity/trufflehog@main
         with:
-          scanArguments: --only-verified
+          scanArguments: --repo . --branch ${{ github.ref_name }} --regex --entropy --fail
