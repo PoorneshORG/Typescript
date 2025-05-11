@@ -21,9 +21,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: scan-push
-              uses: trufflesecurity/trufflehog@main
-              with:
-                base: ""
-                head: ${{ github.ref_name }}
-                extra_args: --results=verified,unknown
+      - name: Run TruffleHog secret scan
+        uses: trufflesecurity/trufflehog@main
+        with:
+          scanArguments: --only-verified
