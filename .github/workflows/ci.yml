@@ -13,14 +13,15 @@ on:
       - actiontest
 
 jobs:
-  test:
+  secret-scan:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
-    - name: Secret Scanning
-      uses: trufflesecurity/trufflehog@main
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run TruffleHog secret scan
+        uses: trufflesecurity/trufflehog@main
         with:
           scanArguments: --only-verified
