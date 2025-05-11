@@ -1,24 +1,25 @@
-name: GitGuardian Secret Scan
+# Copyright © 2022 Gitleaks LLC - All Rights Reserved.
+# You may use this code under the terms of the GITLEAKS-ACTION END-USER LICENSE AGREEMENT.
+# You should have received a copy of the GITLEAKS-ACTION END-USER LICENSE AGREEMENT with this file.
+# If not, please visit https://github.com/gitleaks/gitleaks-action/blob/main/COMMERCIAL-LICENSE.txt.
 
+# CAUTION: This is for testing purposes.
+name: gitleaks-action-HEAD
 on:
   pull_request:
-    branches:
-      - main  # or change to your default branch
-
+  push:
+  workflow_dispatch:
+  
 jobs:
-  secret-scan:
+  scan:
+    name: gitleaks-action-HEAD
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Install GitGuardian CLI
-        run: |
-          pip install ggshield
-
-      - name: Run secret scan with GitGuardian
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: master
+      - uses: ./ # Runs the action that's in the root directory of the repo checked out above. i.e. This action itself.
         env:
-          GITGUARDIAN_API_KEY: ${{ secrets.GITGUARDIAN_API_KEY }}
-        run: |
-          ggshield secret scan repo .
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE}}
