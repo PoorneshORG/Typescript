@@ -1,3 +1,5 @@
+AWS_SECRET_ACCESS_KEY="wJalrXUtnFEMI/K7MDENG/bPxRfiCyEXAMPLEKEY"
+
 import chalk = require('chalk');
 import * as cp from 'child_process';
 import * as fs from 'fs-extra';
