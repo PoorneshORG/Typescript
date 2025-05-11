@@ -1,5 +1,11 @@
 AWS_SECRET_ACCESS_KEY="wJalrXUtnFEMI/K7MDENG/bPxRfiCyEXAMPLEKEY"
 
+export DB_PASSWORD="notasecretjusttesting"
+
+credentials:
+  api_key: "debug-testing-only"
+  secret: "do-not-flag-this"
+
 import chalk = require('chalk');
 import * as cp from 'child_process';
 import * as fs from 'fs-extra';
