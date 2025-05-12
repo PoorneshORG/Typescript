@@ -1,5 +1,6 @@
 # gts
 
+
 > Google TypeScript Style
 
 [![NPM Version][npm-image]][npm-url]
@@ -8,12 +9,15 @@
 [![codecov][codecov-image]][codecov-url]
 [![TypeScript Style Guide][gts-image]][gts-url]
 
+
+
 [gts][npm-url] is Google's TypeScript style guide, and the configuration for our formatter, linter, and automatic code fixer. No lint rules to edit, no configuration to update, no more bike shedding over syntax.
 
 To borrow from [standardjs][standardjs-url]:
 
 - **No configuration**. The easiest way to enforce consistent style in your project. Just drop it in.
 - **Automatically format code**. Just run `gts fix` and say goodbye to messy or inconsistent code.
+
 - **Catch style issues & programmer errors early**. Save precious code review time by eliminating back-and-forth between reviewer & contributor.
 - **Opinionated, but not to a fault**. We recommend you use the default configuration, but if you _need_ to customize compiler or linter config, you can.
 
