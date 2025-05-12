@@ -1,5 +1,4 @@
 # gts
-OAUTH_TOKEN="ya29.a0AfH6SMC6nPz3w0bx8LlE_4p8OqXQZ3mN7EfnZIH61BoBDVgb-0Z9lMl2BzG_oMOM5Xf1Qs0AbqnnV3ealhAqkQyGG8"
 
 
 > Google TypeScript Style
@@ -9,6 +8,8 @@ OAUTH_TOKEN="ya29.a0AfH6SMC6nPz3w0bx8LlE_4p8OqXQZ3mN7EfnZIH61BoBDVgb-0Z9lMl2BzG_
 [![Known Vulnerabilities][snyk-image]][snyk-url]
 [![codecov][codecov-image]][codecov-url]
 [![TypeScript Style Guide][gts-image]][gts-url]
+
+
 
 [gts][npm-url] is Google's TypeScript style guide, and the configuration for our formatter, linter, and automatic code fixer. No lint rules to edit, no configuration to update, no more bike shedding over syntax.
 
