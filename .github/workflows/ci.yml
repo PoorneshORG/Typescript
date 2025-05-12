@@ -31,5 +31,7 @@ jobs:
           pip install ggshield
 
       - name: Run ggshield scan (fail on secrets)
+        env:
+          GITGUARDIAN_API_KEY: ${{ secrets.GITGUARDIAN_API_KEY }}
         run: |
           ggshield secret scan repo .
