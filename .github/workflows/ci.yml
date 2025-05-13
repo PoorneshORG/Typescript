@@ -1,24 +1,59 @@
-name: GitGuardian Secret Scan
+name: Secret Scan with Trivy
 
 on:
+  push:
+    branches:
+      - main
+      - trivy
+      - actionstest
   pull_request:
     branches:
-      - main  # or change to your default branch
-
+      - main
+      - trivy
+      - actionstest
+      
 jobs:
-  secret-scan:
+  trivy-secrets-scan:
+    name: Scan repository for exposed secrets
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Install GitGuardian CLI
-        run: |
-          pip install ggshield
+      - name: Run Trivy Secret Scan
+        id: trivy-scan
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: fs
+          scan-ref: .
+          scanners: secret
+          format: json                          # changed from 'table' to 'json'
+          output: trivy-secrets.json            # output file to parse
+          severity: HIGH,CRITICAL
+          skip-dirs: .git,.github
+          trivy-config: .trivy.yaml
+          ignore-unfixed: false
+          vuln-type: os,library
+          cache-dir: /home/runner/work/your-repo/your-repo/.cache/trivy
+          list-all-pkgs: false
+          version: v0.61.1
+          cache: true
+          skip-setup-trivy: false
 
-      - name: Run secret scan with GitGuardian
-        env:
-          GITGUARDIAN_API_KEY: ${{ secrets.GITGUARDIAN_API_KEY }}
+      - name: Fail if secrets found
         run: |
-          ggshield secret scan repo .
+          echo "Checking for secrets..."
+          if [ ! -f trivy-secrets.json ]; then
+            echo "Trivy output file not found!"
+            exit 1
+          fi
+          count=$(jq '[.Results[].Secrets[]] | length' trivy-secrets.json)
+          echo "Secret count: $count"
+          if [ "$count" -gt 0 ]; then
+            echo "❌ Secrets detected in the code. Failing the build."
+            cat trivy-secrets.json
+            exit 1
+          else
+            echo "✅ No secrets found."
+          fi

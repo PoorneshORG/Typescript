@@ -1,3 +1,13 @@
+GOOGLE_API_KEY=AIzaSyA-EXAMPLEKEY1234567890abcdefghijk
+
+DB_USER="admin"
+DB_PASSWORD="S3cr3tP@ssw0rd!"
+DB_HOST="localhost"
+DB_PORT="5432"
+
+WS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPL  # one char short
+AWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKE  # one char short
+
 /**
  * Copyright 2019 LLC
  *

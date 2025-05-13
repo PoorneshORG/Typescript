@@ -1,0 +1,23 @@
+secret:
+  enable-builtin-rules:
+    - aws-access-key-id
+    - aws-secret-access-key
+    - github-pat
+    - google-api-key
+    - oauth-token
+    - api-key
+  disable-allow-rules:
+    - examples%
+  skip-gitignore: true
+  severity: HIGH,CRITICAL
+  #skip-dirs:
+  #  - .git
+  #  - .github
+  #exclude:
+   # - .gitignore
+   # - .gitattributes
+  include:
+    - .env
+    - .env.example
+    - .github/workflows/*
+  list-all-pkgs: false
