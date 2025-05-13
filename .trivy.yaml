@@ -2,7 +2,7 @@ secret:
   enable-builtin-rules:
     - aws-access-key-id
     - aws-secret-access-key
-  disable-allow-rules:
+  disable-rules:
     - slack-access-token
     - slack-web-hook
   disable-allow-rules:
