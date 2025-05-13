@@ -4,9 +4,13 @@ on:
   push:
     branches:
       - main
+      - trivy
+      - actionstest
   pull_request:
     branches:
       - main
+      - trivy
+      - actionstest
 
 jobs:
   trivy-secrets-scan:
