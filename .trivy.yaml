@@ -1,0 +1,14 @@
+secret:
+  skip-dirs:
+    - .git
+    - .github
+  enable-builtin-rules:
+    - aws-access-key-id
+    - aws-secret-access-key
+    - slack-access-token
+    - slack-web-hook
+#  disable-rules:
+ #   - slack-access-token
+  #  - slack-web-hook
+  #disable-allow-rules:
+   # - markdown
