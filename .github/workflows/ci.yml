@@ -29,3 +29,5 @@ jobs:
           scanners: secret
           format: table
           severity: CRITICAL,HIGH
+          skip-dirs: .git,.github
+          trivy-config: .trivy.yaml
