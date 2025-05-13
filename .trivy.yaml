@@ -12,12 +12,12 @@ secret:
   disable-allow-rules:
     - markdown
   severity: HIGH,CRITICAL
-  skip-dirs:
-    - .git
-    - .github
-  exclude:
-    - .gitignore
-    - .gitattributes
+  #skip-dirs:
+  #  - .git
+  #  - .github
+  #exclude:
+   # - .gitignore
+   # - .gitattributes
   include:
     - .env
     - .env.example
