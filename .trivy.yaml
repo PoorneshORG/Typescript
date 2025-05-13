@@ -9,8 +9,6 @@ secret:
   disable-allow-rules:
     - examples%
   skip-gitignore: true
-  disable-allow-rules:
-    - markdown
   severity: HIGH,CRITICAL
   #skip-dirs:
   #  - .git
