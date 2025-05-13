@@ -1,20 +1,16 @@
-name: Trivy Secrets Scan
+name: Secret Scan with Trivy
 
 on:
   push:
     branches:
-    - main
-    - trivy
-    - actionstest
+      - main
   pull_request:
     branches:
-    - main
-    - trivy
-    - actionstest
+      - main
 
 jobs:
   trivy-secrets-scan:
-    name: Scan repo for exposed secrets
+    name: Scan repository for exposed secrets
     runs-on: ubuntu-latest
 
     steps:
@@ -22,12 +18,19 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Run Trivy Secret Scan
-        uses: aquasecurity/trivy-action@master
+        uses: aquasecurity/trivy-action@v0.61.1
         with:
           scan-type: fs
           scan-ref: .
           scanners: secret
           format: table
-          severity: CRITICAL,HIGH
+          severity: HIGH,CRITICAL
           skip-dirs: .git,.github
           trivy-config: .trivy.yaml
+          ignore-unfixed: false
+          vuln-type: os,library
+          cache-dir: /home/runner/work/your-repo/your-repo/.cache/trivy
+          list-all-pkgs: false
+          version: v0.61.1
+          cache: true
+          skip-setup-trivy: false
