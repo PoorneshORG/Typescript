@@ -1,3 +1,17 @@
+name: Secret Scan with Trivy
+
+on:
+  push:
+    branches:
+      - main
+      - trivy
+      - actionstest
+  pull_request:
+    branches:
+      - main
+      - trivy
+      - actionstest
+      
 jobs:
   trivy-secrets-scan:
     name: Scan repository for exposed secrets
