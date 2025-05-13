@@ -6,9 +6,9 @@ secret:
     - google-api-key
     - oauth-token
     - api-key
-  disable-rules:
-    - slack-access-token
-    - slack-web-hook
+  disable-allow-rules:
+    - examples%
+  skip-gitignore: true
   disable-allow-rules:
     - markdown
   severity: HIGH,CRITICAL
