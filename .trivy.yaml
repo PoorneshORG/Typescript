@@ -1,8 +1,4 @@
 secret:
-  skip-dirs:
-    - .git
-    - .github
-secret:
   enable-builtin-rules:
     - aws-access-key-id
     - aws-secret-access-key
